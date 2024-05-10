@@ -1,0 +1,32 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>JSP Page</title>
+</head>
+<body>
+    <%-- Start web service invocation --%><hr/>
+    <%
+        try {
+            money.Currencywebservice_Service service = new money.Currencywebservice_Service();
+            money.Currencywebservice port = service.getCurrencywebservicePort();
+            // Retrieve parameter values from the request object
+            double inr = Double.parseDouble(request.getParameter("inr"));
+            double doll = Double.parseDouble(request.getParameter("doll"));
+            
+            // Call the web service methods to convert currencies
+            String result1 = port.inRtoDOLL(inr);
+            String result2 = port.dolLtoINR(doll);
+            
+            // Concatenate and display the results
+            out.println("INR to Dollars Result: " + result1 + "<br>");
+            out.println("Dollars to INR Result: " + result2);
+        } catch (Exception ex) {
+            // Handle exceptions
+            out.println("Error: " + ex.getMessage());
+        }
+    %>
+    <%-- End web service invocation --%><hr/>
+</body>
+</html>

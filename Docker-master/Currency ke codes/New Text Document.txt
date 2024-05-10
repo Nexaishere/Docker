@@ -1,0 +1,19 @@
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>JSP Page</title>
+</head>
+<body>
+    <form action="output.jsp" method="post">
+        <label for="inr">Enter currency in rupees: </label>
+        <input type="text" id="inr" name="inr"><br>
+        
+        <label for="doll">Enter currency in dollars: </label>
+        <input type="text" id="doll" name="doll">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

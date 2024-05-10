@@ -1,0 +1,83 @@
+MTOM- index
+
+<%-- 
+    Document   : index
+    Created on : 3 May, 2024, 9:10:07 PM
+    Author     : nisha
+--%>
+<%@page import="java.io.BufferedOutputStream"%>
+<%@page import="java.io.FileOutputStream"%>
+<%@page import="java.io.FileInputStream"%>
+<%@page import="java.io.BufferedInputStream"%>
+<%@page import="java.io.File"%>
+<%@page import="javax.xml.ws.soap.MTOMFeature"%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>JSP Page</title>
+</head>
+<body>
+<%-- start web service invocation --%><hr/>
+<%
+try {
+    pkg.ImageWS_Service service = new pkg.ImageWS_Service(); 
+    pkg.ImageWS port = service.getImageWSPort(new MTOMFeature(60000));
+    
+    // TODO initialize WS operation arguments here
+    String filePath="c:/Games/ABC.jpeg"; // Assuming this is the correct file path
+    File file=new File(filePath);
+    FileInputStream fis=new FileInputStream(file); 
+    BufferedInputStream bis=new BufferedInputStream(fis); 
+    String filename = file.getName(); 
+    byte[]imageBytes=new byte[(int)file.length()]; 
+    bis.read(imageBytes);
+    
+    port.upload(filename, imageBytes); 
+    bis.close();
+    
+    out.println("File uploaded :" + filePath);
+} catch (Exception ex) {
+    // TODO handle custom exceptions here
+    ex.printStackTrace();
+}
+%>
+<%-- end web service invocation --%><hr/>
+
+<%-- start web service invocation --%><hr/>
+<%
+try {
+    pkg.ImageWS_Service service = new pkg.ImageWS_Service(); 
+    pkg.ImageWS port = service.getImageWSPort();
+    
+    // TODO initialize WS operation arguments here
+    String filename = "ABC.jpeg"; // Assuming this is the correct file name
+    
+    // Initialize filePath
+    String filePath = "C:/Games/download/" + filename; // Assuming this is the correct download path
+    
+    // Invoke the download method and get the file bytes
+    byte[] fileBytes = port.download(filename);
+    
+    // Write the downloaded bytes to a file
+    FileOutputStream fos = new FileOutputStream(filePath);
+    BufferedOutputStream bos = new BufferedOutputStream(fos);
+    bos.write(fileBytes);
+    bos.close();
+    
+    out.println("File downloaded: " + filePath);
+} catch (Exception ex) {
+    // TODO handle custom exceptions here
+    ex.printStackTrace();
+}
+%>
+<%-- end web service invocation --%><hr/>
+</body>
+</html>
+
+
+
+
+

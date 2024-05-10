@@ -1,0 +1,4 @@
+INR to DOLL ->  INR + " INR in Dollar: " + (INR / 83.11); 
+
+
+DOLL to INR -> DOLL + " Dollar in INR: " + (DOLL * 83.11);

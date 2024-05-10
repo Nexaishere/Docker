@@ -1,0 +1,26 @@
+
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>JSP Page</title>
+</head>
+<body>
+<%
+    tycs.Tempwebservice_Service obj = new tycs.Tempwebservice_Service(); // Service object
+    tycs.Tempwebservice port = obj.getTempwebservicePort(); // Service port
+
+    String val = request.getParameter("txt"); // Get input value
+    float temp = Float.parseFloat(val); // Parse input to float
+    float result1 = port.convertFtoC(temp); // Call web service method for F to C conversion
+    float result2 = port.convertCtoF(temp); // Call web service method for C to F conversion
+    
+    out.println("Temperature conversion from F to C: " + result1);
+%>
+<br/>
+<%
+    out.println("Temperature conversion from C to F: " + result2);
+%>
+</body>
+</html>

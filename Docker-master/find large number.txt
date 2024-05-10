@@ -1,0 +1,5 @@
+    @WebMethod(operationName = "findlargest")
+    public int findlargest(@WebParam(name = "num1") int num1, @WebParam(name = "num2") int num2) {
+        //TODO write your implementation code here:
+        return Math.max(num1, num2);
+    }

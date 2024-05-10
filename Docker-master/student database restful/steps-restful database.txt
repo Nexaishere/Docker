@@ -1,0 +1,14 @@
+Restful service
+
+java web-> web application
+
+1.select- entity class
+ 
+2. add property-> sname
+below hashcode
+
+3. select-> jsp page from entity class
+
+4. select-> restful web services from entity classess
+
+5. deploy run
